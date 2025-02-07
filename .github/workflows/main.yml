@@ -33,7 +33,7 @@ jobs:
                   port: ${{ secrets.PORT }}
                   script: |
                       sudo chmod 777 /var/run/docker.sock
-                      docker stop camp
-                      docker rm camp
+                      docker stop tekkotekkotech
+                      docker rm tekkotekkotech
                       docker rmi ${{ secrets.DOCKER_USER }}/cmp
                       docker run --name tekkotekkotech -d  -p 80:8181 ${{ secrets.DOCKER_USER }}/cmp
