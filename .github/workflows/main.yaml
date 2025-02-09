@@ -33,5 +33,6 @@ jobs:
                   port: ${{ secrets.PORT }}
                   script: |
                       export TTK_DOCKER_USER=${{ secrets.DOCKER_USER }}
-                      docker compose -f <docker-compose.yml> logs
+                      echo ${{ github.event.repository.name }}
+                      docker compose -f ./docker-compose.yml 
                       docker compose up -d
