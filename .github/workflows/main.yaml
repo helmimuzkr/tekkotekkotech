@@ -23,7 +23,7 @@ jobs:
                   context: .
                   file: ./Dockerfile
                   push: true
-                  tags: ${{ secrets.DOCKER_USER }}/tekkotekkotech:latest
+                  tags: ${{ secrets.DOCKER_USER }}/${{ github.event.repository.name }}:latest
             - name: executing remote ssh commands using password
               uses: appleboy/ssh-action@v0.1.7
               with:
@@ -33,6 +33,8 @@ jobs:
                   port: ${{ secrets.PORT }}
                   script: |
                       export TTK_DOCKER_USER=${{ secrets.DOCKER_USER }}
-                      echo ${{ github.event.repository.name }}
+                      export TTK_APP_NAME=${{ github.event.repository.name }}
+                      echo ${TTK_APP_NAME}
+                      ls -al
                       docker compose -f ./docker-compose.yaml 
                       docker compose up -d

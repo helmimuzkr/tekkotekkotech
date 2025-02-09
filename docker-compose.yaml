@@ -1,6 +1,6 @@
 services:
   tekkotekkotech-be:
-    image: ${TTK_DOCKER_USER}/tekkotekkotech:latest
-    container_name: tekkotekkotech
+    image: ${TTK_DOCKER_USER}/${TTK_APP_NAME}:latest
+    container_name: ${TTK_APP_NAME} 
     ports:
       - 127.0.0.1:8080
