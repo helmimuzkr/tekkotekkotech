@@ -29,6 +29,7 @@ jobs:
         needs: build
         runs-on: ubuntu-latest
         steps:
+            - uses: actions/checkout@v4
             # Copy only the docker-compose.yml to remote server home folder
             - name: copy files to target server via scp
               uses: appleboy/scp-action@v0.1.3
