@@ -33,5 +33,5 @@ jobs:
                   port: ${{ secrets.PORT }}
                   script: |
                       export TTK_DOCKER_USER=${{ secrets.DOCKER_USER }}
-                      docker compose --version
+                      docker compose -f <docker-compose.yml> logs
                       docker compose up -d
