@@ -23,7 +23,7 @@ jobs:
                   context: .
                   file: ./Dockerfile
                   push: true
-                  tags: ${{ secrets.DOCKER_USER }}/cmp:latest
+                  tags: ${{ secrets.DOCKER_USER }}/tekkotekkotech:latest
             - name: executing remote ssh commands using password
               uses: appleboy/ssh-action@v0.1.7
               with:
@@ -32,8 +32,5 @@ jobs:
                   key: ${{ secrets.KEY }}
                   port: ${{ secrets.PORT }}
                   script: |
-                      sudo chmod 777 /var/run/docker.sock
-                      docker stop tekkotekkotech
-                      docker rm tekkotekkotech
-                      docker rmi ${{ secrets.DOCKER_USER }}/cmp
-                      docker run --name tekkotekkotech -d  -p 80:8181 ${{ secrets.DOCKER_USER }}/cmp
+                      export TTK_DOCKER_USER=${{ secrets.DOCKER_USER }}
+                      docker-compose up -d

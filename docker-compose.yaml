@@ -1,0 +1,6 @@
+services:
+  tekkotekkotech-be:
+    image: ${TTK_DOCKER_USER}/tekkotekkotech:latest
+    container_name: tekkotekkotech
+    ports:
+      - 127.0.0.1:8080

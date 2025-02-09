@@ -6,6 +6,8 @@ WORKDIR /app
 
 ADD . /app
 
+RUN go test -v ./...
+
 RUN go build -o main .
 
 CMD ["/app/main"]
