@@ -25,10 +25,10 @@ jobs:
                   push: true
                   tags: ${{ secrets.DOCKER_USER }}/${{ github.event.repository.name }}:latest
     deploy:
-      name: Deployment
-      needs: build
-      runs-on: ubuntu-latest
-      steps:
+        name: Deployment
+        needs: build
+        runs-on: ubuntu-latest
+        steps:
             # Copy only the docker-compose.yml to remote server home folder
             - name: copy files to target server via scp
               uses: appleboy/scp-action@v0.1.3
@@ -49,6 +49,6 @@ jobs:
                   script: |
                       export TTK_DOCKER_USER=${{ secrets.DOCKER_USER }}
                       export TTK_PROJECT_NAME=${{ github.event.repository.name }}
-                      cd ~/deploy/${{ github.event.repository.name }} 
+                      cd ~/.deploy/${{ github.event.repository.name }} 
                       ls -al
                       docker compose up -d
