@@ -48,6 +48,6 @@ jobs:
                   script: |
                       export TTK_DOCKER_USER=${{ secrets.DOCKER_USER }}
                       export TTK_PROJECT_NAME=${{ github.event.repository.name }}
-                      ls -al ./
-                      docker compose -f ./docker-compose.yaml 
+                      cd ~/deploy/${{ github.event.repository.name }} 
+                      ls -al
                       docker compose up -d
