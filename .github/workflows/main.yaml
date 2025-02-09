@@ -26,6 +26,7 @@ jobs:
                   tags: ${{ secrets.DOCKER_USER }}/${{ github.event.repository.name }}:latest
     deploy:
       name: Deployment
+      needs: build
       runs-on: ubuntu-latest
       steps:
             # Copy only the docker-compose.yml to remote server home folder
