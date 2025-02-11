@@ -3,4 +3,4 @@ services:
     image: ${TTK_DOCKER_USER}/${TTK_PROJECT_NAME}:latest
     container_name: ${TTK_PROJECT_NAME} 
     ports:
-      - 127.0.0.1:8181
+      - 127.0.0.1:8181:8181
