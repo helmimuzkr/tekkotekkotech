@@ -9,7 +9,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.ttk-http.rule=Host(`ttk.tekkotekko.tech`)
-      - traefik.http.routers.ttk.http.entrypoints=web
+      - traefik.http.routers.ttk-http.entrypoints=web
 networks:
   traefik-network:
     external: true
