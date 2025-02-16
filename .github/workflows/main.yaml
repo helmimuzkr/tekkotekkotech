@@ -43,14 +43,16 @@ jobs:
                 target: "~/.deploy/${{ github.event.repository.name }}/"
             - name: executing remote ssh commands using password
               uses: appleboy/ssh-action@v0.1.7
+              env: 
+                TTK_DOCKER_USER: ${{ secrets.DOCKER_USER }}
+                TTK_PROJECT_NAME: ${{ github.event.repository.name}}
               with:
                   host: ${{ secrets.HOST }}
                   username: ${{ secrets.USERNAME }}
                   key: ${{ secrets.KEY }}
                   port: ${{ secrets.PORT }}
+                  envs: TTK_DOCKER_USER,TTK_PROJECT_NAME
                   script: |
-                      export TTK_DOCKER_USER=${{ secrets.DOCKER_USER }}
-                      export TTK_PROJECT_NAME=${{ github.event.repository.name }}
                       cd ~/.deploy/${{ github.event.repository.name }} 
                       ls -al
-                      docker compose up -d
+                      docker compose down && docker compose up -d

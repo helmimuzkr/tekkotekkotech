@@ -3,13 +3,18 @@ services:
     image: ${TTK_DOCKER_USER}/${TTK_PROJECT_NAME}:latest
     container_name: ${TTK_PROJECT_NAME} 
     ports:
-       - "127.0.0.1:8181:8181"
+      - "127.0.0.1:8181:8181"
     networks:
       - traefik-network
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.ttk-http.rule=Host(`ttk.tekkotekko.tech`)
-      - traefik.http.routers.ttk-http.entrypoints=web
+      traefik.enable: true
+      traefik.http.routers.ttk-http.rule: Host(`ttk.tekkotekko.tech`)
+      traefik.http.routers.ttk-http.entrypoints: web # by default is web/80
+      # implement https
+      traefik.http.routers.ttk-https.tls: true
+      traefik.http.routers.ttk-https.tls.certresolver: cloudflare-resolver
+      traefik.http.routers.ttk-https.rule: Host(`ttk.tekkotekko.tech`)
+      traefik.http.routers.ttk-https.entrypoints: websecure
 networks:
   traefik-network:
     external: true
