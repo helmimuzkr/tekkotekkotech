@@ -3,4 +3,13 @@ services:
     image: ${TTK_DOCKER_USER}/${TTK_PROJECT_NAME}:latest
     container_name: ${TTK_PROJECT_NAME} 
     ports:
-      - 127.0.0.1:8181:8181
+       - "127.0.0.1:8081:8081"
+    networks:
+      - traefik-network
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.app2-http.rule=Host(`ttk.tekkotekko.tech`)
+      - traefik.http.routers.app2-http.entrypoints=web
+networks:
+  traefik-network:
+    external: true
