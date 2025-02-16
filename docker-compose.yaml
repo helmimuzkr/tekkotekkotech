@@ -8,8 +8,6 @@ services:
       - traefik-network
     labels:
       traefik.enable: true
-      traefik.http.routers.ttk-http.rule: Host(`ttk.tekkotekko.tech`)
-      traefik.http.routers.ttk-http.entrypoints: web # by default is web/80
       # implement https
       traefik.http.routers.ttk-https.tls: true
       traefik.http.routers.ttk-https.tls.certresolver: cloudflare-resolver
